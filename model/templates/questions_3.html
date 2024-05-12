@@ -1,0 +1,67 @@
+{% extends 'question.html' %}
+
+{% block content%}
+<section class="progress" style="height: 2em;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+         style="width: {{progress_bar}}%" aria-valuenow="{{progress_bar}}" aria-valuemin="0" aria-valuemax="100">
+        {{progress_bar}} {% if progress_bar != 0 %} % {%endif%}
+    </div>
+</section>
+<section>
+    <form action="answer" method="POST" class="needs-validation" novalidate>
+        <div>
+            <h3 class="display-5">Demographic and Screening Questions:</h3>
+            <h6 class="display-6"> How tall are you? </h6>
+
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example" id="height"
+                        onchange="changeFunc();" required>
+                    <option selected disabled value="">Choose Feet or Centimeters</option>
+                    <option value="1">Feet and Inches</option>
+                    <option value="2">Centimeters</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid age category.
+                </div>
+            </div>
+            <div id="first" class="side-by-side">
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div id="feet" class="form-floating mb-3">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md">
+                        <div id="inch" class="form-floating mb-3">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="second" class="form-floating mb-3">
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div id="second-one">
+
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div id="second-two">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="question_number" value="{{question_number}}">
+            <div class="space-between">
+                <input name="back" type="submit" value="Back" class="btn btn-outline-danger btn-lg width-submit">
+                <input name="next" type="submit" value="Next" class="btn btn-outline-success btn-lg width-submit">
+            </div>
+        </div>
+    </form>
+</section>
+<!-- TODO: Calculate height and assign it to hidden input 'height'-->
+<script src="{{ url_for('static', filename = 'quest3.js') }}"></script>
+{% endblock %}

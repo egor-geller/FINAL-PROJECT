@@ -1,0 +1,17 @@
+version: '3.10'
+
+services:
+  train:
+    build: ./train
+    volumes:
+      - shared-data:/usr/src/app/train
+
+  model:
+    build: ./model
+    volumes:
+      - shared-data:/usr/src/app/train
+    ports:
+      - "8000:5000"
+
+volumes:
+  shared-data:
